@@ -1,0 +1,4 @@
+service : {
+  multiply: (int, int) -> (int);
+  square: (int, int) -> (float64);
+}
