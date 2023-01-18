@@ -1,0 +1,7 @@
+// Version: 1.0.0
+type Book = {pages : Nat; title : Text};
+type Book__1 = Book;
+type List<T> = ?(T, List<T>);
+actor {
+  stable var books : ?(Book__1, List<Book__1>)
+};

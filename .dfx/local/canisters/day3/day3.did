@@ -1,0 +1,12 @@
+type Book = 
+ record {
+   pages: nat;
+   title: text;
+ };
+service : {
+  add_book: (text, nat) -> ();
+  drop: (vec nat, nat) -> (vec nat);
+  get_books: () -> (vec Book) query;
+  remove_event: (vec nat) -> (vec nat);
+  second_maximum: (vec int) -> (int);
+}

@@ -106,7 +106,7 @@ actor DChallengeDay2 {
                         }
                     };
                     if ( paso )  {
-                        let value = buffer.add( a[i]  );
+                        buffer.add( a[i]  );
                         duplicate := Buffer.toArray(buffer);
                     };
 
