@@ -13,12 +13,20 @@ actor DChallengeDay2 {
 
     public func average_array(array : [Int] ) : async Int {
         let cant: Int = array.size();
-        var sum : Int = 0;
-        for (items in array.vals()) {
-            sum += items;
-        };
-        let result  = sum / cant;
-        return result;
+        if ( cant > 0 ) {
+
+            var sum : Int = 0;
+            for (items in array.vals()) {
+                sum += items;
+            };
+            let result  = sum / cant;
+            return result;
+
+        } else {
+            return 0;
+        }
+        
+       
     };
 
     // *Character count: Write a function that takes in a string and a character, and returns the number of occurrences of that character in the string.
