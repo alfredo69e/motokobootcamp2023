@@ -4,6 +4,8 @@ import Debug "mo:base/Debug";
 import Iter "mo:base/Iter";
 import Char "mo:base/Char";
 import Text "mo:base/Text";
+import Nat8 "mo:base/Nat8";
+import Buffer "mo:base/Buffer";
 
 actor DChallengeDay2 {
 
@@ -21,11 +23,10 @@ actor DChallengeDay2 {
 
     // *Character count: Write a function that takes in a string and a character, and returns the number of occurrences of that character in the string.
 
+
     public func count_character( text : Text, char : Char ) : async Nat {
 
         var cont = 0;
-        // let value_char = Char.toText( char );
-        //  Debug.print( debug_show( value_char ) );
         
         for(items : Char in text.chars() ) {
             if( Char.equal( items, char ) ) {
@@ -62,7 +63,7 @@ actor DChallengeDay2 {
 
         var new_text = Text.trimStart( t, p );
         new_text := Text.trimEnd( new_text, p );
-        Debug.print( debug_show( new_text )  );
+        // Debug.print( debug_show( new_text )  );
     
         let value = Text.split( new_text, p );
         for( items in value) {
@@ -70,8 +71,53 @@ actor DChallengeDay2 {
         };
 
         return count;
-    }
+    };
 
+    // * Write a function find_duplicates that takes an array of natural numbers and returns a new array containing all duplicate numbers. The order of the elements in the returned array should be the same as the order of the first occurrence in the input array.
 
+     public func find_duplicates(a : [Nat]) : async [Nat] {
+
+        var duplicate : [Nat] = [];
+
+        let buffer = Buffer.Buffer<Nat>(0);
+
+        for(i in Iter.range(0, a.size() - 1)  ) {
+
+                if ( i > 0 ) {
+                    var paso = false;
+                    for(x in Iter.range(0, a.size() - 1) ) {
+                        if ( i != x ) {
+                            if ( a[i] == a[x] ) {
+                                 paso := true;
+                                for(item in duplicate.vals()) {
+                                    if( item == a[i] ) {
+                                        paso := false;
+                                    }
+                                };
+                            }
+                        }
+                    };
+                    if ( paso )  {
+                        let value = buffer.add( a[i]  );
+                        duplicate := Buffer.toArray(buffer);
+                    };
+
+                };
+
+        };
+        return duplicate;
+     };
+
+    // * Write a function convert_to_binary that takes a natural number n and returns a string representing the binary representation of n.
+
+    public func convert_to_binary(n : Nat) : async Text {
+       if(n > 255) {
+            return "0";
+        } else {
+            let value = Nat8.fromNat( n );
+            Debug.print( debug_show( value )  );
+            return Nat8.toText( value );
+        };
+    };
 
 }

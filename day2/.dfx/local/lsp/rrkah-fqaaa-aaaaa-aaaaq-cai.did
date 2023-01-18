@@ -1,6 +1,9 @@
+type Char = nat32;
 service : {
   average_array: (vec int) -> (int);
-  count_character: (text, nat32) -> (nat);
+  convert_to_binary: (nat) -> (text);
+  count_character: (text, Char) -> (nat);
   factorial: (nat) -> (nat);
+  find_duplicates: (vec nat) -> (vec nat);
   number_of_words: (text) -> (nat);
 }
